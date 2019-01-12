@@ -1,0 +1,269 @@
+% --------------------------------------------------------------------------------
+% "THE BEER-WARE LICENSE" (Revision 42):
+%
+% William Wennerström <william@willeponken.me> wrote this file.
+% As long as you retain this notice you can do whatever you want with this stuff.
+% If we meet some day, and you think this stuff is worth it, you can buy me a beer
+% in return.
+%                                   - William Wennerström <william@willeponken.me>
+% --------------------------------------------------------------------------------
+
+%!TEX TS-program = xelatex
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+% Change this to switch language, e.g. 'swedish' or 'spanish'.
+\usepackage[english]{babel} 
+
+% A mixture of required packages and some that are just nice to have.
+\usepackage{lipsum}
+\usepackage{blindtext}
+\usepackage{dirtree}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{titlesec, blindtext, color}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{csvsimple}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{float}
+\usepackage{subfig}
+\usepackage{listings}
+\usepackage{upgreek}
+\usepackage[american]{circuitikz}
+\usepackage[titletoc,title]{appendix}
+\usepackage{amssymb}
+\usepackage{array,etoolbox}
+\usepackage[parfill]{parskip}
+\usepackage{ragged2e}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\usepackage{svg}
+\usepackage{lastpage}
+\usepackage{todonotes}
+\usepackage{xcolor}
+
+% Colorize links in the document nicely.
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+% Setup plots with tikz.
+\pgfplotsset{width=10cm,compat=1.9} 
+\usepgfplotslibrary{external}
+\tikzexternalize 
+
+% Remove 'Chapter #' for new chapters and merge with the title of that chapter.
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp}{0pt}{\Huge\bfseries}
+
+% Automatically increment numbers in tables.
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+\newcommand{\ruler}{\noindent\rule{\textwidth}{1pt}}
+
+% Add \doubleunderline{...} command.
+\def\doubleunderline#1{\underline{\underline{#1}}}
+\newcommand{\doubleindent}{\indent \indent}
+
+% Define Y colymn type.
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% Standard colors for the code syntax highlighting.
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Setup listings environment (for code blocks).
+\lstdefinestyle{codestyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=codestyle}
+
+% Define author information
+\newcommand{\authors}{William Wennerström}
+\newcommand{\authorsinfo}{
+    Wennerström, William\\
+    \texttt{\href{
+        mailto:wenwil-5@student.ltu.se
+    }{\color{black}{
+        wenwil-5@student.ltu.se
+    }}}
+    
+    \and
+    
+    Some Other, Guy\\
+    \texttt{\href{
+        mailto:sumguy-5@student.ltu.se
+    }{\color{black}{
+        sumguy-5@student.ltu.se
+    }}}
+    
+    \and
+    
+    Yet Another, Guy\\
+    \texttt{\href{
+        mailto:anoguy-5@student.ltu.se
+    }{\color{black}{
+        anoguy-5@student.ltu.se
+    }}}
+}
+
+% Define course information
+\newcommand{\coursename}{Blah Blah - Introduction}
+\newcommand{\coursecode}{D00??E}
+
+% Define project name
+\newcommand{\projectname}{A Very Nice Project\\Project Report}
+
+% Define information about the school/university
+\newcommand{\schoolinfo}{Department of Computer Science, \\
+                         Electrical and Space Engineering \\
+                         \bigskip{}
+                         Luleå University of Technology \\
+                         Luleå, Sweden
+}
+
+% Define the title style.
+\title{
+    \coursecode{} \\
+    \coursename{} \\
+    \vspace{1.8em}
+    \textbf{\projectname{}} \break
+    \author{
+        \authorsinfo{}
+    } \break{}
+    \schoolinfo{}}
+\renewcommand\footnotemark{}
+    \date{\today}
+ 
+% Remove head and footer ruler and also the left header.
+\pagestyle{fancyplain}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\lhead{}
+ 
+\begin{document}
+
+% Insert the title w/o any page number.
+\maketitle
+\thispagestyle{empty} % Disable page numbers for this page.
+\newpage
+
+% Insert TOC w/o highlighted links.
+{\hypersetup{linkcolor=black}
+    \tableofcontents}
+\newpage
+
+\chapter{The mission}
+\section{How it all started}
+\blindtext\cite{sum-stuff}
+
+\section{Goal}
+\blindtext
+\blinditemize
+
+\chapter{Result}
+\section{Crazy efficient code}
+
+
+\begin{lstlisting}[language=Python, caption=Ultimate code snippet]
+def efficient(print_me):
+    while(True):
+        print(print_me)
+
+efficient("Hello")
+\end{lstlisting}
+
+\appendix
+
+\chapter{Included stuff, yes}
+% Use \includepdf etc. for inserting appenices.
+% \includepdf[pages=-]{sum-included-pdf.pdf}
+
+\newpage
+\apptocmd{\sloppy}{\hbadness 10000\relax}{}{} 
+{\RaggedRight\begin{thebibliography}{1}
+
+\bibitem{sum-stuff} Wikipedia.org (o.d.) {\em Wireless mesh network.} Fetched \today, from: \url{https://en.wikipedia.org/wiki/Wireless_mesh_network}.
+
+\end{thebibliography}}
+
+% Here follows some good to have examples.
+\if false
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm]{xxx.png}
+    \caption{Lalalala.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{verbatim}
+PaymentTest > entitledFullAmount[ID: 505] FAILED
+    java.lang.AssertionError: expected:<4960> but was:<5960>
+        at org.junit.Assert.fail(Assert.java:88)
+        at org.junit.Assert.failNotEquals(Assert.java:834)
+        at org.junit.Assert.assertEquals(Assert.java:645)
+        at org.junit.Assert.assertEquals(Assert.java:631)
+        at PaymentTest.entitledFullAmount(PaymentTest.java:164)
+\end{verbatim}
+
+\begin{table}[H]
+\centering
+\caption{API endpoints and their methods}
+\begin{tabular}{|clcl|}
+\hline
+\textbf{Method}              & \textbf{Endpoint}                             & \textbf{Access}              & \textbf{Description}                 \\ \hline
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/}                        & \multicolumn{1}{c|}{N/A}     & Home page                            \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/login}                   & \multicolumn{1}{c|}{N/A}     & View customer login page                      \\
+\multicolumn{1}{|c|}{POST}   & \multicolumn{1}{l|}{/login}                   & \multicolumn{1}{c|}{N/A}     & Login customer user                           \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/register}                & \multicolumn{1}{c|}{N/A}     & View customer register page                   \\
+\multicolumn{1}{|c|}{POST}   & \multicolumn{1}{l|}{/register}                & \multicolumn{1}{c|}{N/A}     & Register customer user                        \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/user}                    & \multicolumn{1}{c|}{C, W, A} & View user page                       \\
+\multicolumn{1}{|c|}{POST}   & \multicolumn{1}{l|}{/user}                    & \multicolumn{1}{c|}{C, W, A} & Set user information                 \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/article?id=\{0..n\}}     & \multicolumn{1}{c|}{C, W, A} & Get specific article by ID           \\
+\multicolumn{1}{|c|}{POST}   & \multicolumn{1}{l|}{/cart}                    & \multicolumn{1}{c|}{C}       & Add artice to cart                   \\
+\multicolumn{1}{|l|}{DELETE} & \multicolumn{1}{l|}{/cart?pos=\{0..n\}}       & \multicolumn{1}{c|}{C}       & Delete article from cart by position \\
+\multicolumn{1}{|l|}{DELETE} & \multicolumn{1}{l|}{/cart}                    & \multicolumn{1}{c|}{C}       & Delete whole cart                    \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/cart}                    & \multicolumn{1}{c|}{C}       & View cart                            \\
+\multicolumn{1}{|c|}{PUT}    & \multicolumn{1}{l|}{/cart}                    & \multicolumn{1}{c|}{C}       & Order items in cart                  \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/order}                   & \multicolumn{1}{c|}{W, A}    & View current orders                  \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/order?id=\{0..n\}}       & \multicolumn{1}{c|}{W, A}    & View order by ID                     \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/warehouse}               & \multicolumn{1}{c|}{W}       & Warehouse user home page             \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/admin}                   & \multicolumn{1}{c|}{A}       & Admin user home page                 \\
+\multicolumn{1}{|c|}{PUT}    & \multicolumn{1}{l|}{/order?id=\{0..n\}}       & \multicolumn{1}{c|}{W}       & Accept order by ID                   \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/user?id=\{0..n\}}        & \multicolumn{1}{c|}{A}       & Display user by ID                   \\
+\multicolumn{1}{|c|}{GET}    & \multicolumn{1}{l|}{/search?query=\{string\}}        & \multicolumn{1}{c|}{N/A}       & Search for article                   \\
+\multicolumn{1}{|c|}{POST}   & \multicolumn{1}{l|}{/register?type=admin}     & \multicolumn{1}{c|}{A}       & Register new admin user              \\
+\multicolumn{1}{|c|}{POST}   & \multicolumn{1}{l|}{/register?type=warehouse} & \multicolumn{1}{c|}{A}       & Register new warehouse user          \\
+\multicolumn{1}{|c|}{POST}   & \multicolumn{1}{l|}{/register?type=customer}  & \multicolumn{1}{c|}{A}       & Register new customer user           \\ \hline
+\end{tabular}
+\end{table}
+\fi
+\end{document}
